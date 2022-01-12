@@ -3,6 +3,23 @@ import {StyleSheet, TextInput, View, Keyboard} from 'react-native';
 interface myProps {}
 interface myState {}
 export default class App extends React.Component<myProps, myState> {
+  constructor(props: myProps) {
+    super(props);
+    this.state = {
+      typedText: 'please type your text',
+      typedPassword: '',
+      typedDescription: '',
+    };
+  }
+  // khi component vừa hiện lên thì gọi hàm WillMount
+  componentWillMount() {
+    console.log('componentWillMount');
+  }
+
+  // khi component mất đi thì gọi hàm unMount
+  componentWillUnmount() {
+    console.log('componentWillUnmount');
+  }
   render(): React.ReactNode {
     return (
       <View>
