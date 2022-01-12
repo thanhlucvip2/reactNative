@@ -1,27 +1,40 @@
-import React, {Component} from 'react';
-import Button from 'react-native-button';
-
-export default class ExampleComponent extends Component {
-  constructor(props: any) {
-    super(props);
-  }
-  _handlePress() {
-    console.log('Pressed!');
-  }
-  render() {
+import React from 'react';
+import {
+  StyleSheet,
+  Text,
+  TouchableHighlight,
+  TouchableNativeFeedbackBase,
+  View,
+} from 'react-native';
+export default class App extends React.Component {
+  render(): React.ReactNode {
     return (
-      <Button
-        containerStyle={{
-          padding: 10,
-          height: 45,
-          overflow: 'hidden',
-          borderRadius: 4,
-          backgroundColor: 'white',
-        }}
-        disabledContainerStyle={{backgroundColor: 'grey'}}
-        style={{fontSize: 20, color: 'green'}}>
-        Press me!
-      </Button>
+      <View style={Styles.container}>
+        <TouchableHighlight
+          onPress={() => {
+            console.log('TouchableHighlight');
+          }}
+          onShowUnderlay={() => {
+            console.log('onShowUnderlay'); // gọi hàm 2 lần khi đè chuột xuống và mở chuột lên
+          }}
+          underlayColor="red" // màu khi click
+        >
+          <View style={Styles.button}>
+            <Text>TouchableHighlight</Text>
+          </View>
+        </TouchableHighlight>
+      </View>
     );
   }
 }
+
+const Styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  button: {
+    backgroundColor: 'green',
+  },
+});
