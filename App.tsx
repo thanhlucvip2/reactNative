@@ -1,11 +1,29 @@
 import React from 'react';
 import {FlatList, Image, StyleSheet, Text, View} from 'react-native';
+import Swipeout from 'react-native-swipeout';
 
+//yarn add react-native-swipeout
 const data = [
   {
     imgurl:
       'https://st.quantrimang.com/photos/image/2020/10/17/giai-nen-file-img.jpg',
     key: '231',
+    id: 1,
+    name: 'rượu vang',
+    price: 485,
+  },
+  {
+    imgurl:
+      'https://st.quantrimang.com/photos/image/2020/10/17/giai-nen-file-img.jpg',
+    key: '22131',
+    id: 1,
+    name: 'rượu vang',
+    price: 485,
+  },
+  {
+    imgurl:
+      'https://st.quantrimang.com/photos/image/2020/10/17/giai-nen-file-img.jpg',
+    key: '2dasda31',
     id: 1,
     name: 'rượu vang',
     price: 485,
@@ -75,14 +93,21 @@ export default class App extends React.Component {
           data={data}
           renderItem={({item, index}: any) => (
             <View>
-              <Text>{item.name}</Text>
-              <Image
-                source={{uri: item.imgurl}}
-                style={{width: 100, height: 100}}></Image>
-              <Text
-                style={index % 2 === 0 ? Styles.colorBlue : Styles.colorRed}>
-                {index}
-              </Text>
+              <View style={Styles.container}>
+                <Image
+                  source={{uri: item.imgurl}}
+                  style={{width: 100, height: 100}}></Image>
+                <View style={Styles.list}>
+                  <Text>{item.name}</Text>
+                  <Text
+                    style={
+                      index % 2 === 0 ? Styles.colorBlue : Styles.colorRed
+                    }>
+                    {index}
+                  </Text>
+                </View>
+              </View>
+              <View style={{borderWidth: 1, margin: 1}}></View>
             </View>
           )} // render data
           keyExtractor={item => item.key} // key
@@ -92,10 +117,15 @@ export default class App extends React.Component {
   }
 }
 const Styles = StyleSheet.create({
+  container: {flexDirection: 'row'},
   colorBlue: {
     color: 'blue',
   },
   colorRed: {
     color: 'red',
+  },
+  list: {
+    backgroundColor: 'yellow',
+    flex: 1,
   },
 });
